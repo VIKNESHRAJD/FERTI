@@ -7,444 +7,170 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --green-deep: #1a5c2a;
-      --green-mid: #2e8b57;
-      --green-bright: #4caf50;
-      --green-light: #a8d5a2;
-      --lime: #b5e550;
-      --yellow: #f9e03b;
-      --orange: #ff8c42;
-      --red-accent: #e84855;
-      --brown: #7b4f2e;
-      --cream: #fdf8ef;
-      --white: #ffffff;
-      --dark: #1c1c1e;
+      --green-deep: #1a5c2a; --green-mid: #2e8b57; --green-bright: #4caf50;
+      --green-light: #a8d5a2; --lime: #b5e550; --yellow: #f9e03b;
+      --orange: #ff8c42; --red-accent: #e84855; --cream: #fdf8ef;
+      --white: #ffffff; --dark: #1c1c1e;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--green-deep);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%;
-      height: 70px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.25);
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem; font-weight: 900;
-      color: var(--lime);
-      letter-spacing: -0.5px;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--green-deep); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 70px; box-shadow: 0 4px 20px rgba(0,0,0,.25); }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--lime); letter-spacing: -.3px; }
     .logo span { color: var(--yellow); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--green-light);
-      text-decoration: none; font-weight: 500; font-size: .95rem;
-      transition: color .2s;
-    }
+    .nav-links a { color: var(--green-light); text-decoration: none; font-weight: 500; font-size: .95rem; transition: color .2s; }
     .nav-links a:hover { color: var(--lime); }
-    .nav-cta {
-      background: var(--lime);
-      color: var(--green-deep);
-      padding: .5rem 1.4rem; border-radius: 999px;
-      font-weight: 600; font-size: .9rem;
-      cursor: pointer; border: none;
-      transition: transform .2s, background .2s;
-    }
+    .nav-cta { background: var(--lime); color: var(--green-deep); padding: .5rem 1.4rem; border-radius: 999px; font-weight: 600; font-size: .9rem; cursor: pointer; border: none; transition: transform .2s, background .2s; }
     .nav-cta:hover { background: var(--yellow); transform: scale(1.05); }
 
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      background:
-        radial-gradient(ellipse at 70% 50%, rgba(75,175,80,.18) 0%, transparent 60%),
-        radial-gradient(ellipse at 20% 80%, rgba(181,229,80,.15) 0%, transparent 55%),
-        linear-gradient(135deg, #0d3d1c 0%, #1a5c2a 45%, #2a7a40 100%);
-      display: flex; align-items: center;
-      padding: 100px 5% 60px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(circle at 80% 20%, rgba(249,224,59,.08) 0%, transparent 40%),
-        radial-gradient(circle at 10% 60%, rgba(255,140,66,.06) 0%, transparent 35%);
-      pointer-events: none;
-    }
-    /* floating blobs */
-    .blob {
-      position: absolute; border-radius: 50%;
-      filter: blur(60px); opacity: .35; pointer-events: none;
-      animation: float 7s ease-in-out infinite alternate;
-    }
-    .blob-1 { width: 340px; height: 340px; background: var(--lime); top: -80px; right: 15%; animation-delay: 0s; }
+    .hero { min-height: 100vh; background: radial-gradient(ellipse at 70% 50%, rgba(75,175,80,.18) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(181,229,80,.15) 0%, transparent 55%), linear-gradient(135deg, #0d3d1c 0%, #1a5c2a 45%, #2a7a40 100%); display: flex; align-items: center; padding: 100px 5% 60px; position: relative; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .35; pointer-events: none; animation: float 7s ease-in-out infinite alternate; }
+    .blob-1 { width: 340px; height: 340px; background: var(--lime); top: -80px; right: 15%; }
     .blob-2 { width: 220px; height: 220px; background: var(--yellow); bottom: 10%; right: 30%; animation-delay: 2s; }
     .blob-3 { width: 180px; height: 180px; background: var(--orange); bottom: 20%; left: 5%; animation-delay: 4s; }
     @keyframes float { from { transform: translateY(0) scale(1); } to { transform: translateY(-30px) scale(1.08); } }
-
-    .hero-content { position: relative; z-index: 2; max-width: 600px; }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(181,229,80,.2); border: 1px solid var(--lime);
-      color: var(--lime); font-size: .8rem; font-weight: 600;
-      padding: .35rem 1rem; border-radius: 999px; letter-spacing: 1px;
-      text-transform: uppercase; margin-bottom: 1.5rem;
-      animation: fadeUp .7s ease both;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      line-height: 1.1; color: var(--white);
-      animation: fadeUp .7s .15s ease both;
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 620px; }
+    .hero-badge { display: inline-block; background: rgba(181,229,80,.2); border: 1px solid var(--lime); color: var(--lime); font-size: .8rem; font-weight: 600; padding: .35rem 1rem; border-radius: 999px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeUp .7s ease both; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.1; color: var(--white); animation: fadeUp .7s .15s ease both; }
     .hero h1 em { color: var(--lime); font-style: normal; }
-    .hero p {
-      margin: 1.4rem 0 2.2rem;
-      color: rgba(255,255,255,.75); font-size: 1.05rem; line-height: 1.7;
-      animation: fadeUp .7s .3s ease both;
-    }
+    .hero p { margin: 1.4rem 0 2.2rem; color: rgba(255,255,255,.75); font-size: 1.05rem; line-height: 1.7; animation: fadeUp .7s .3s ease both; }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp .7s .45s ease both; }
-    .btn-primary {
-      background: var(--lime); color: var(--green-deep);
-      padding: .85rem 2.2rem; border-radius: 999px;
-      font-weight: 700; font-size: 1rem; border: none; cursor: pointer;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 6px 24px rgba(181,229,80,.35);
-    }
+    .btn-primary { background: var(--lime); color: var(--green-deep); padding: .85rem 2.2rem; border-radius: 999px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: transform .2s, box-shadow .2s; box-shadow: 0 6px 24px rgba(181,229,80,.35); }
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(181,229,80,.5); }
-    .btn-secondary {
-      background: transparent; color: var(--white);
-      padding: .85rem 2.2rem; border-radius: 999px;
-      font-weight: 600; font-size: 1rem;
-      border: 2px solid rgba(255,255,255,.4); cursor: pointer;
-      transition: border-color .2s, color .2s;
-    }
+    .btn-secondary { background: transparent; color: var(--white); padding: .85rem 2.2rem; border-radius: 999px; font-weight: 600; font-size: 1rem; border: 2px solid rgba(255,255,255,.4); cursor: pointer; transition: border-color .2s, color .2s; }
     .btn-secondary:hover { border-color: var(--lime); color: var(--lime); }
-
-    .hero-image {
-      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
-      font-size: 16rem; opacity: .15; pointer-events: none;
-      animation: spin 40s linear infinite;
-    }
+    .hero-image { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); font-size: 16rem; opacity: .12; pointer-events: none; animation: spin 40s linear infinite; }
     @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    /* BRANDS STRIP */
+    .brands-strip { background: var(--white); padding: 1.3rem 5%; display: flex; align-items: center; justify-content: center; gap: .8rem; flex-wrap: wrap; border-bottom: 3px solid #e8f5e9; }
+    .brands-strip .label { font-size: .78rem; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-right: .3rem; }
+    .brand-pill { font-weight: 700; font-size: .85rem; padding: .45rem 1.1rem; border-radius: 999px; border: 2px solid; letter-spacing: .3px; transition: transform .15s; cursor: default; }
+    .brand-pill:hover { transform: scale(1.05); }
+    .bp-sci  { background: #eaf4ff; color: #1a3a6c; border-color: #8bc4ff; }
+    .bp-trop { background: #fff3e8; color: #7a3300; border-color: #ffba82; }
+    .bp-tata { background: #f3eafd; color: #4a1a7a; border-color: #c79de8; }
+    .bp-bay  { background: #fdeef4; color: #7a1a3a; border-color: #f5a9c4; }
 
-    /* ─── STATS ─── */
-    .stats {
-      background: var(--green-deep);
-      padding: 3rem 5%;
-      display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap;
-    }
+    /* STATS */
+    .stats { background: var(--green-deep); padding: 3rem 5%; display: flex; justify-content: center; gap: 5rem; flex-wrap: wrap; }
     .stat { text-align: center; }
-    .stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem; font-weight: 900; color: var(--lime);
-    }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--lime); }
     .stat-label { color: var(--green-light); font-size: .9rem; margin-top: .2rem; }
 
-    /* ─── SECTION SHARED ─── */
     section { padding: 90px 5%; }
-    .section-label {
-      text-transform: uppercase; letter-spacing: 2px; font-size: .8rem;
-      font-weight: 600; color: var(--green-mid); margin-bottom: .6rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-      color: var(--green-deep); margin-bottom: 1rem;
-    }
+    .section-label { text-transform: uppercase; letter-spacing: 2px; font-size: .8rem; font-weight: 600; color: var(--green-mid); margin-bottom: .6rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); color: var(--green-deep); margin-bottom: 1rem; }
     .section-sub { color: #555; max-width: 500px; line-height: 1.7; margin-bottom: 3rem; }
 
-    /* ─── PRODUCTS ─── */
     #products { background: var(--cream); }
     .products-header { text-align: center; }
     .products-header .section-sub { margin: 0 auto 3rem; }
-
-    .filter-bar {
-      display: flex; justify-content: center; gap: .7rem; flex-wrap: wrap; margin-bottom: 3rem;
-    }
-    .filter-btn {
-      padding: .5rem 1.3rem; border-radius: 999px; border: 2px solid var(--green-mid);
-      background: transparent; color: var(--green-deep); font-weight: 600; font-size: .88rem;
-      cursor: pointer; transition: all .2s;
-    }
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--green-mid); color: var(--white);
-    }
-
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-      gap: 2rem;
-    }
-    .product-card {
-      background: var(--white);
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,.07);
-      transition: transform .25s, box-shadow .25s;
-      cursor: pointer;
-    }
+    .filter-bar { display: flex; justify-content: center; gap: .7rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .filter-btn { padding: .5rem 1.3rem; border-radius: 999px; border: 2px solid var(--green-mid); background: transparent; color: var(--green-deep); font-weight: 600; font-size: .88rem; cursor: pointer; transition: all .2s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--green-mid); color: var(--white); }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 2rem; }
+    .product-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.07); transition: transform .25s, box-shadow .25s; cursor: pointer; }
     .product-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
-
-    .product-img {
-      height: 180px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 5rem;
-      position: relative; overflow: hidden;
-    } 
-    .card-badge {
-      position: absolute; top: 12px; right: 12px;
-      background: var(--red-accent); color: var(--white);
-      font-size: .72rem; font-weight: 700; padding: .25rem .6rem;
-      border-radius: 999px; text-transform: uppercase; letter-spacing: .5px;
-    }
+    .product-img { height: 185px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; position: relative; overflow: hidden; }
+    .product-img .emoji { font-size: 4rem; }
+    .brand-tag { font-size: .7rem; font-weight: 700; padding: .2rem .75rem; border-radius: 999px; border: 1.5px solid; }
+    .bt-sci  { background: #eaf4ff; color: #1a3a6c; border-color: #8bc4ff; }
+    .bt-trop { background: #fff3e8; color: #7a3300; border-color: #ffba82; }
+    .bt-tata { background: #f3eafd; color: #4a1a7a; border-color: #c79de8; }
+    .bt-bay  { background: #fdeef4; color: #7a1a3a; border-color: #f5a9c4; }
+    .card-badge { position: absolute; top: 12px; right: 12px; background: var(--red-accent); color: var(--white); font-size: .72rem; font-weight: 700; padding: .25rem .6rem; border-radius: 999px; text-transform: uppercase; }
     .product-body { padding: 1.4rem; }
-    .product-category {
-      font-size: .75rem; font-weight: 600; color: var(--green-mid);
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: .4rem;
-    }
-    .product-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; color: var(--green-deep); margin-bottom: .5rem;
-    }
+    .product-brand-name { font-size: .75rem; font-weight: 600; color: var(--green-mid); text-transform: uppercase; letter-spacing: 1px; margin-bottom: .4rem; }
+    .product-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--green-deep); margin-bottom: .5rem; }
     .product-desc { font-size: .88rem; color: #666; line-height: 1.6; margin-bottom: 1rem; }
     .product-footer { display: flex; align-items: center; justify-content: space-between; }
-    .product-price {
-      font-size: 1.4rem; font-weight: 700; color: var(--green-deep);
-    }
+    .product-price { font-size: 1.5rem; font-weight: 700; color: var(--green-deep); }
     .product-price span { font-size: .8rem; color: #999; font-weight: 400; }
-    .add-btn {
-      background: var(--green-bright); color: var(--white);
-      border: none; border-radius: 999px; padding: .5rem 1.2rem;
-      font-weight: 600; font-size: .88rem; cursor: pointer;
-      transition: background .2s, transform .15s;
-    }
+    .add-btn { background: var(--green-bright); color: var(--white); border: none; border-radius: 999px; padding: .5rem 1.2rem; font-weight: 600; font-size: .88rem; cursor: pointer; transition: background .2s, transform .15s; }
     .add-btn:hover { background: var(--green-deep); transform: scale(1.06); }
 
-    /* ─── COLORS FOR CARD BACKGROUNDS ─── */
     .bg-green  { background: linear-gradient(135deg, #d4edda, #a8d5a2); }
     .bg-yellow { background: linear-gradient(135deg, #fff8cc, #ffe97a); }
     .bg-orange { background: linear-gradient(135deg, #ffe6d0, #ffba82); }
     .bg-blue   { background: linear-gradient(135deg, #d0eaff, #8bc4ff); }
     .bg-purple { background: linear-gradient(135deg, #e8d5f5, #c79de8); }
     .bg-pink   { background: linear-gradient(135deg, #fde8f0, #f5a9c4); }
+    .bg-teal   { background: linear-gradient(135deg, #d0f5f0, #7ae8d8); }
+    .bg-red    { background: linear-gradient(135deg, #fde8e8, #f5a9a9); }
 
-    /* ─── WHY CHOOSE US ─── */
-    #why {
-      background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e9 100%);
-    }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem; align-items: center;
-    }
+    #why { background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e9 100%); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .why-features { display: flex; flex-direction: column; gap: 1.8rem; }
     .feature-item { display: flex; gap: 1.2rem; align-items: flex-start; }
-    .feature-icon {
-      width: 54px; height: 54px; border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; flex-shrink: 0;
-    }
-    .fi-green  { background: #d4edda; }
-    .fi-yellow { background: #fff8cc; }
-    .fi-orange { background: #ffe6d0; }
-    .fi-blue   { background: #d0eaff; }
+    .feature-icon { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+    .fi-green { background: #d4edda; } .fi-yellow { background: #fff8cc; } .fi-orange { background: #ffe6d0; } .fi-blue { background: #d0eaff; }
     .feature-text h3 { font-size: 1rem; font-weight: 700; color: var(--green-deep); margin-bottom: .3rem; }
     .feature-text p  { font-size: .9rem; color: #666; line-height: 1.6; }
-
-    .why-visual {
-      background: var(--green-deep);
-      border-radius: 30px; padding: 3rem;
-      color: var(--white); text-align: center;
-      box-shadow: 0 20px 60px rgba(26,92,42,.3);
-      position: relative; overflow: hidden;
-    }
-    .why-visual::before {
-      content: '';
-      position: absolute; top: -50px; right: -50px;
-      width: 200px; height: 200px;
-      background: rgba(181,229,80,.15); border-radius: 50%;
-    }
+    .why-visual { background: var(--green-deep); border-radius: 30px; padding: 3rem; color: var(--white); text-align: center; box-shadow: 0 20px 60px rgba(26,92,42,.3); position: relative; overflow: hidden; }
+    .why-visual::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(181,229,80,.15); border-radius: 50%; }
     .why-visual-icon { font-size: 5rem; margin-bottom: 1.5rem; }
-    .why-visual h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem; margin-bottom: 1rem; color: var(--lime);
-    }
+    .why-visual h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--lime); }
     .why-visual p { color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 2rem; }
-    .why-visual-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-    }
-    .why-stat {
-      background: rgba(255,255,255,.08); border-radius: 14px; padding: 1rem;
-    }
+    .why-visual-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .why-stat { background: rgba(255,255,255,.08); border-radius: 14px; padding: 1rem; }
     .why-stat-num { font-size: 1.8rem; font-weight: 700; color: var(--yellow); }
     .why-stat-label { font-size: .78rem; color: rgba(255,255,255,.6); margin-top: .2rem; }
 
-    /* ─── TESTIMONIALS ─── */
     #reviews { background: var(--cream); }
     .reviews-header { text-align: center; }
     .reviews-header .section-sub { margin: 0 auto 3rem; }
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1.8rem;
-    }
-    .review-card {
-      background: var(--white);
-      border-radius: 20px; padding: 2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,.07);
-      transition: transform .2s;
-      border-top: 5px solid var(--accent, #4caf50);
-    }
+    .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.8rem; }
+    .review-card { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,.07); transition: transform .2s; border-top: 5px solid var(--accent, #4caf50); }
     .review-card:hover { transform: translateY(-5px); }
     .stars { color: var(--yellow); font-size: 1.1rem; margin-bottom: 1rem; }
     .review-text { font-size: .95rem; color: #555; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
     .reviewer { display: flex; align-items: center; gap: .8rem; }
-    .reviewer-avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--green-light);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-    }
+    .reviewer-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; }
     .reviewer-name { font-weight: 700; font-size: .9rem; color: var(--green-deep); }
     .reviewer-role { font-size: .78rem; color: #999; }
 
-    /* ─── NEWSLETTER ─── */
-    .newsletter {
-      background: linear-gradient(135deg, var(--green-deep) 0%, #2e8b57 100%);
-      padding: 80px 5%;
-      text-align: center; position: relative; overflow: hidden;
-    }
-    .newsletter::before {
-      content: '🌿';
-      position: absolute; top: -20px; left: 5%; font-size: 8rem; opacity: .08; pointer-events: none;
-    }
-    .newsletter::after {
-      content: '🌾';
-      position: absolute; bottom: -10px; right: 5%; font-size: 8rem; opacity: .08; pointer-events: none;
-    }
-    .newsletter h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem; color: var(--white); margin-bottom: .8rem;
-    }
+    .newsletter { background: linear-gradient(135deg, var(--green-deep) 0%, #2e8b57 100%); padding: 80px 5%; text-align: center; position: relative; overflow: hidden; }
+    .newsletter::before { content: '🌿'; position: absolute; top: -20px; left: 5%; font-size: 8rem; opacity: .08; pointer-events: none; }
+    .newsletter::after  { content: '🌾'; position: absolute; bottom: -10px; right: 5%; font-size: 8rem; opacity: .08; pointer-events: none; }
+    .newsletter h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--white); margin-bottom: .8rem; }
     .newsletter p { color: rgba(255,255,255,.75); margin-bottom: 2rem; font-size: 1.05rem; }
     .newsletter-form { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
-    .newsletter-form input {
-      padding: .9rem 1.5rem; border-radius: 999px; border: none;
-      font-size: 1rem; width: 320px; max-width: 100%; outline: none;
-      font-family: 'DM Sans', sans-serif;
-    }
-    .newsletter-form button {
-      background: var(--lime); color: var(--green-deep);
-      border: none; border-radius: 999px;
-      padding: .9rem 2rem; font-weight: 700; font-size: 1rem;
-      cursor: pointer; transition: background .2s, transform .15s;
-    }
+    .newsletter-form input { padding: .9rem 1.5rem; border-radius: 999px; border: none; font-size: 1rem; width: 320px; max-width: 100%; outline: none; font-family: 'DM Sans', sans-serif; }
+    .newsletter-form button { background: var(--lime); color: var(--green-deep); border: none; border-radius: 999px; padding: .9rem 2rem; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background .2s, transform .15s; }
     .newsletter-form button:hover { background: var(--yellow); transform: scale(1.05); }
 
-    /* ─── FOOTER ─── */
-    footer {
-      background: var(--dark); color: rgba(255,255,255,.7);
-      padding: 60px 5% 30px;
-    }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem;
-      padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-    .footer-brand .logo { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+    footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 60px 5% 30px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand .logo { font-size: 1rem; margin-bottom: 1rem; display: block; }
     .footer-brand p { font-size: .9rem; line-height: 1.7; max-width: 240px; }
     .footer-col h4 { color: var(--white); font-size: .95rem; margin-bottom: 1.2rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
     .footer-col a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
     .footer-col a:hover { color: var(--lime); }
-    .footer-bottom {
-      padding-top: 2rem;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-    }
+    .footer-bottom { padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
     .footer-bottom p { font-size: .85rem; }
     .social-links { display: flex; gap: 1rem; }
-    .social-link {
-      width: 38px; height: 38px; border-radius: 10px;
-      background: rgba(255,255,255,.08);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; cursor: pointer; transition: background .2s, transform .15s;
-      text-decoration: none;
-    }
+    .social-link { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer; transition: background .2s, transform .15s; text-decoration: none; }
     .social-link:hover { background: var(--green-mid); transform: scale(1.1); }
 
-    /* ─── CART ICON ─── */
-    .cart-float {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-      background: var(--green-deep);
-      width: 58px; height: 58px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; cursor: pointer;
-      box-shadow: 0 6px 24px rgba(26,92,42,.5);
-      transition: transform .2s;
-    }
+    .cart-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 200; background: var(--green-deep); width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; cursor: pointer; box-shadow: 0 6px 24px rgba(26,92,42,.5); transition: transform .2s; }
     .cart-float:hover { transform: scale(1.12); }
-    .cart-count {
-      position: absolute; top: -4px; right: -4px;
-      background: var(--red-accent); color: #fff;
-      border-radius: 999px; min-width: 20px; height: 20px;
-      font-size: .72rem; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      padding: 0 4px;
-    }
-
-    /* ─── TOAST ─── */
-    #toast {
-      position: fixed; bottom: 5.5rem; right: 2rem; z-index: 300;
-      background: var(--green-deep); color: var(--lime);
-      padding: .8rem 1.4rem; border-radius: 12px;
-      font-weight: 600; font-size: .92rem;
-      box-shadow: 0 6px 24px rgba(0,0,0,.2);
-      opacity: 0; transform: translateY(20px);
-      transition: opacity .3s, transform .3s;
-      pointer-events: none;
-    }
+    .cart-count { position: absolute; top: -4px; right: -4px; background: var(--red-accent); color: #fff; border-radius: 999px; min-width: 20px; height: 20px; font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
+    #toast { position: fixed; bottom: 5.5rem; right: 2rem; z-index: 300; background: var(--green-deep); color: var(--lime); padding: .8rem 1.4rem; border-radius: 12px; font-weight: 600; font-size: .92rem; box-shadow: 0 6px 24px rgba(0,0,0,.2); opacity: 0; transform: translateY(20px); transition: opacity .3s, transform .3s; pointer-events: none; }
     #toast.show { opacity: 1; transform: translateY(0); }
-
-    /* ─── SCROLL ANIMATE ─── */
-    .reveal {
-      opacity: 0; transform: translateY(40px);
-      transition: opacity .7s, transform .7s;
-    }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s, transform .7s; }
     .reveal.visible { opacity: 1; transform: none; }
 
-    /* ─── RESPONSIVE ─── */
-    @media(max-width: 900px) {
-      .why-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media(max-width: 600px) {
-      .nav-links { display: none; }
-      .stats { gap: 2rem; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero-image { display: none; }
-    }
+    @media(max-width: 900px) { .why-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width: 600px) { .nav-links { display: none; } .stats { gap: 2rem; } .footer-grid { grid-template-columns: 1fr; } .hero-image { display: none; } }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Priyadharshini<span> Enterprise</span></div>
   <ul class="nav-links">
@@ -456,16 +182,15 @@
   <button class="nav-cta" onclick="scrollTo({top:document.getElementById('products').offsetTop,behavior:'smooth'})">Shop Now</button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
   <div class="hero-image">🌿</div>
   <div class="hero-content">
-    <div class="hero-badge">🌱 Est. 2008 · Trusted by 12,000+ Farmers</div>
+    <div class="hero-badge">🌱 Thanjavur's Trusted Agri Store</div>
     <h1>Feed Your Soil,<br><em>Grow Your Future</em></h1>
-    <p>Premium organic and synthetic fertilizers for every crop type. Science-backed formulas that maximize yield and keep your land healthy for generations.</p>
+    <p>Authorised dealer for Scientific Industries, Tropical Agro, Tata Rallis & Bayer CropScience. Best-priced genuine fertilizers for farmers across Tamil Nadu.</p>
     <div class="hero-btns">
       <button class="btn-primary" onclick="scrollTo({top:document.getElementById('products').offsetTop,behavior:'smooth'})">🛒 Browse Products</button>
       <button class="btn-secondary" onclick="scrollTo({top:document.getElementById('why').offsetTop,behavior:'smooth'})">Learn More →</button>
@@ -473,166 +198,127 @@
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <div class="stat-num">12K+</div>
-    <div class="stat-label">Happy Farmers</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">85+</div>
-    <div class="stat-label">Product Varieties</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">99%</div>
-    <div class="stat-label">Satisfaction Rate</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">47</div>
-    <div class="stat-label">Countries Served</div>
-  </div>
+<div class="brands-strip">
+  <span class="label">Authorised Dealer:</span>
+  <div class="brand-pill bp-sci">🔬 Scientific Industries</div>
+  <div class="brand-pill bp-trop">🌴 Tropical Agro</div>
+  <div class="brand-pill bp-tata">⚙️ Tata Rallis</div>
+  <div class="brand-pill bp-bay">🧪 Bayer CropScience</div>
 </div>
 
-<!-- PRODUCTS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">5000+</div><div class="stat-label">Happy Farmers</div></div>
+  <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Products Stocked</div></div>
+  <div class="stat"><div class="stat-num">99%</div><div class="stat-label">Genuine Products</div></div>
+  <div class="stat"><div class="stat-num">15yr</div><div class="stat-label">In Business</div></div>
+</div>
+
 <section id="products">
   <div class="products-header reveal">
     <div class="section-label">🌾 Our Collection</div>
-    <h2 class="section-title">Premium Fertilizers for Every Need</h2>
-    <p class="section-sub">From organic blends to precision NPK mixes — find exactly what your crops need to thrive.</p>
+    <h2 class="section-title">Premium Fertilizers for Every Crop</h2>
+    <p class="section-sub">Prices in Indian Rupees (₹). Bulk discount available — contact us for orders above 50 kg.</p>
   </div>
-
   <div class="filter-bar reveal">
-    <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
-    <button class="filter-btn" onclick="filterProducts('organic', this)">Organic</button>
-    <button class="filter-btn" onclick="filterProducts('npk', this)">NPK Blends</button>
-    <button class="filter-btn" onclick="filterProducts('liquid', this)">Liquid</button>
-    <button class="filter-btn" onclick="filterProducts('specialty', this)">Specialty</button>
+    <button class="filter-btn active" onclick="filterProducts('all',this)">All Products</button>
+    <button class="filter-btn" onclick="filterProducts('scientific',this)">🔬 Scientific</button>
+    <button class="filter-btn" onclick="filterProducts('tropical',this)">🌴 Tropical Agro</button>
+    <button class="filter-btn" onclick="filterProducts('tata',this)">⚙️ Tata Rallis</button>
+    <button class="filter-btn" onclick="filterProducts('bayer',this)">🧪 Bayer</button>
   </div>
-
-  <div class="products-grid" id="productsGrid">
-    <!-- populated by JS -->
-  </div>
+  <div class="products-grid" id="productsGrid"></div>
 </section>
 
-<!-- WHY CHOOSE US -->
 <section id="why">
   <div class="why-grid">
     <div class="reveal">
-      <div class="section-label">💚 Why GreenRoot</div>
-      <h2 class="section-title">Rooted in Science,<br>Grown with Care</h2>
-      <p class="section-sub">We partner with agronomists and soil scientists to bring you fertilizers that actually work — backed by decades of field research.</p>
+      <div class="section-label">💚 Why Priyadharshini Enterprise</div>
+      <h2 class="section-title">Rooted in Trust,<br>Grown with Care</h2>
+      <p class="section-sub">Serving farmers across Thanjavur & Tamil Nadu for 15 years with genuine products, fair prices and expert agri guidance.</p>
       <div class="why-features">
         <div class="feature-item">
-          <div class="feature-icon fi-green">🔬</div>
-          <div class="feature-text">
-            <h3>Lab-Certified Quality</h3>
-            <p>Every batch is independently tested for nutrient accuracy and purity before reaching your farm.</p>
-          </div>
+          <div class="feature-icon fi-green">✅</div>
+          <div class="feature-text"><h3>100% Genuine Products</h3><p>Direct authorised dealer — zero counterfeit risk, full manufacturer warranty on every product.</p></div>
         </div>
         <div class="feature-item">
-          <div class="feature-icon fi-yellow">🌍</div>
-          <div class="feature-text">
-            <h3>Eco-Friendly Formulas</h3>
-            <p>Our products are designed to enrich soil biodiversity while reducing chemical runoff.</p>
-          </div>
+          <div class="feature-icon fi-yellow">💰</div>
+          <div class="feature-text"><h3>Best Prices in Tamil Nadu</h3><p>Competitive MRP pricing. Special bulk rates for large farms, FPOs and farmer co-operatives.</p></div>
         </div>
         <div class="feature-item">
           <div class="feature-icon fi-orange">🚚</div>
-          <div class="feature-text">
-            <h3>Fast & Reliable Delivery</h3>
-            <p>Order before 2 PM and get same-day dispatch. Bulk orders qualify for free freight.</p>
-          </div>
+          <div class="feature-text"><h3>Fast Local Delivery</h3><p>Same-day delivery in Thanjavur. Nearby districts within 2 days. Doorstep delivery available.</p></div>
         </div>
         <div class="feature-item">
           <div class="feature-icon fi-blue">🧑‍🌾</div>
-          <div class="feature-text">
-            <h3>Expert Agro Support</h3>
-            <p>Our agronomists are available via chat, phone, or video call to help plan your nutrient program.</p>
-          </div>
+          <div class="feature-text"><h3>Free Agri Guidance</h3><p>Crop-wise fertilizer advice from trained agronomists — available in Tamil & English.</p></div>
         </div>
       </div>
     </div>
     <div class="why-visual reveal">
       <div class="why-visual-icon">🏆</div>
-      <h3>Award-Winning Formulas</h3>
-      <p>Recognized by the International Agronomy Society for breakthrough yield improvements across 6 continents.</p>
+      <h3>Trusted Since 2009</h3>
+      <p>Serving paddy, banana, sugarcane, coconut & vegetable farmers across Thanjavur district and Tamil Nadu.</p>
       <div class="why-visual-stats">
-        <div class="why-stat">
-          <div class="why-stat-num">+38%</div>
-          <div class="why-stat-label">Average Yield Boost</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-num">60%</div>
-          <div class="why-stat-label">Less Water Usage</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-num">16yr</div>
-          <div class="why-stat-label">In Business</div>
-        </div>
-        <div class="why-stat">
-          <div class="why-stat-num">100%</div>
-          <div class="why-stat-label">Traceable Sources</div>
-        </div>
+        <div class="why-stat"><div class="why-stat-num">+35%</div><div class="why-stat-label">Avg. Yield Boost</div></div>
+        <div class="why-stat"><div class="why-stat-num">4</div><div class="why-stat-label">Top Brands</div></div>
+        <div class="why-stat"><div class="why-stat-num">15yr</div><div class="why-stat-label">Experience</div></div>
+        <div class="why-stat"><div class="why-stat-num">100%</div><div class="why-stat-label">Genuine Stock</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REVIEWS -->
 <section id="reviews">
   <div class="reviews-header reveal">
     <div class="section-label">⭐ Testimonials</div>
-    <h2 class="section-title">Farmers Love GreenRoot</h2>
-    <p class="section-sub">Real results from real growers around the world.</p>
+    <h2 class="section-title">Farmers Love Priyadharshini Enterprise</h2>
+    <p class="section-sub">Real results from real farmers across Tamil Nadu.</p>
   </div>
   <div class="reviews-grid" id="reviewsGrid"></div>
 </section>
 
-<!-- NEWSLETTER -->
 <div class="newsletter" id="contact">
-  <h2 class="reveal">Get Growing Tips & Exclusive Deals</h2>
-  <p class="reveal">Join 8,000+ farmers who receive our weekly agronomy newsletter.</p>
+  <h2 class="reveal">Get Agri Tips & Exclusive Deals</h2>
+  <p class="reveal">Join 3,000+ Tamil Nadu farmers receiving our crop advisory & seasonal offers.</p>
   <div class="newsletter-form reveal">
     <input type="email" placeholder="Your email address" id="emailInput"/>
     <button onclick="subscribe()">Subscribe Free 🌱</button>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <span class="logo">Priyadharshini<span> Enterprise</span></span>
-      <p>Empowering farmers worldwide with premium fertilizers and expert agronomic guidance since 2008.</p>
+      <p>Authorised dealer for Scientific, Tropical Agro, Tata Rallis & Bayer. Serving Thanjavur & Tamil Nadu since 2009.</p>
     </div>
     <div class="footer-col">
-      <h4>Products</h4>
+      <h4>Brands</h4>
       <ul>
-        <li><a href="#">Organic Blends</a></li>
+        <li><a href="#">Scientific Industries</a></li>
+        <li><a href="#">Tropical Agro</a></li>
+        <li><a href="#">Tata Rallis</a></li>
+        <li><a href="#">Bayer CropScience</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
         <li><a href="#">NPK Fertilizers</a></li>
-        <li><a href="#">Liquid Feeds</a></li>
-        <li><a href="#">Soil Conditioners</a></li>
         <li><a href="#">Micronutrients</a></li>
+        <li><a href="#">Organic Manure</a></li>
+        <li><a href="#">Pesticides</a></li>
+        <li><a href="#">Soil Conditioners</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
+      <h4>Contact</h4>
       <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Research Lab</a></li>
-        <li><a href="#">Sustainability</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Press</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <ul>
-        <li><a href="#">Find a Dealer</a></li>
-        <li><a href="#">Track Order</a></li>
-        <li><a href="#">Returns Policy</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">📍 Thanjavur, Tamil Nadu</a></li>
+        <li><a href="#">📞 Call / WhatsApp</a></li>
+        <li><a href="#">🕐 Mon–Sat: 8am–7pm</a></li>
+        <li><a href="#">📦 Bulk Orders</a></li>
+        <li><a href="#">💬 Free Agri Advice</a></li>
       </ul>
     </div>
   </div>
@@ -642,59 +328,65 @@
       <a class="social-link" title="Facebook">📘</a>
       <a class="social-link" title="Instagram">📸</a>
       <a class="social-link" title="YouTube">▶️</a>
-      <a class="social-link" title="Twitter">🐦</a>
+      <a class="social-link" title="WhatsApp">💬</a>
     </div>
   </div>
 </footer>
 
-<!-- FLOATING CART -->
 <div class="cart-float" onclick="showCart()" title="View Cart">
   🛒
   <div class="cart-count" id="cartCount">0</div>
 </div>
-
-<!-- TOAST -->
-<div id="toast">✅ Added to cart!</div>
+<div id="toast"></div>
 
 <script>
-  /* ── PRODUCT DATA ── */
   const products = [
-    { id:1, name:"BioBoost Organic Blend", category:"organic", emoji:"🌿", bg:"bg-green",  price:24.99, unit:"5 kg bag", desc:"100% organic compost-based blend that enriches microbial life.", badge:null },
-    { id:2, name:"PowerGrow NPK 20-20-20", category:"npk",     emoji:"💎", bg:"bg-blue",   price:18.50, unit:"2 kg bag", desc:"Balanced nitrogen, phosphorus & potassium for all growth stages.", badge:"Best Seller" },
-    { id:3, name:"AquaFeed Liquid Gold",   category:"liquid",  emoji:"💧", bg:"bg-yellow", price:31.00, unit:"1 L bottle",desc:"Fast-acting foliar spray that doubles absorption speed.", badge:"New" },
-    { id:4, name:"RootMax Starter Mix",    category:"npk",     emoji:"🌱", bg:"bg-orange", price:14.99, unit:"3 kg bag", desc:"High-phosphorus formula to establish strong root systems.", badge:null },
-    { id:5, name:"TerraHumus Compost",     category:"organic", emoji:"🍂", bg:"bg-purple", price:22.00, unit:"10 kg bag",desc:"Rich humus that improves soil structure and water retention.", badge:null },
-    { id:6, name:"MicroElite Trace Mix",   category:"specialty",emoji:"⚗️", bg:"bg-pink",  price:39.95, unit:"500 g",   desc:"Precision blend of zinc, iron, manganese & boron for micronutrient deficiencies.", badge:"Pro" },
-    { id:7, name:"CropMax Granular NPK",   category:"npk",     emoji:"🌾", bg:"bg-yellow", price:27.50, unit:"5 kg bag", desc:"Slow-release granules for sustained nutrition over 3 months.", badge:null },
-    { id:8, name:"GreenFlush Liquid Kelp", category:"liquid",  emoji:"🌊", bg:"bg-green",  price:19.99, unit:"500 ml",  desc:"Cold-pressed sea kelp concentrate rich in natural growth hormones.", badge:"Organic" },
+    // Scientific Industries
+    { id:1,  brand:'scientific', name:'Scientific NPK 19:19:19',     emoji:'🔬', bg:'bg-blue',   price:1250, unit:'1 kg',   desc:'Fully water-soluble NPK for foliar & drip. Ideal for all crops.', badge:'Best Seller' },
+    { id:2,  brand:'scientific', name:'Scientific Multi-K (0:0:50)', emoji:'💠', bg:'bg-teal',   price:980,  unit:'1 kg',   desc:'Potassium nitrate for fruit quality, firmness & disease resistance.', badge:null },
+    { id:3,  brand:'scientific', name:'Scientific Calcium Nitrate',  emoji:'🧊', bg:'bg-blue',   price:750,  unit:'1 kg',   desc:'Prevents blossom-end rot in tomato & chilli. Strengthens cell walls.', badge:null },
+    // Tropical Agro
+    { id:4,  brand:'tropical',   name:'Tropical Agromin Boron',      emoji:'🌴', bg:'bg-orange', price:320,  unit:'500 g',  desc:'Corrects boron deficiency in groundnut, cotton & sunflower crops.', badge:null },
+    { id:5,  brand:'tropical',   name:'Tropical Zinc Sulphate 21%',  emoji:'⚡', bg:'bg-yellow', price:480,  unit:'1 kg',   desc:'Granular zinc sulphate for paddy, sugarcane & banana deficiencies.', badge:'Popular' },
+    { id:6,  brand:'tropical',   name:'Tropical Ferrous Sulphate',   emoji:'🍃', bg:'bg-green',  price:260,  unit:'500 g',  desc:'Iron supplement for chlorosis in vegetables & fruit crops.', badge:null },
+    // Tata Rallis
+    { id:7,  brand:'tata',       name:'Tata Paras Urea 46%',         emoji:'⚙️', bg:'bg-purple', price:290,  unit:'5 kg',   desc:'Premium nitrogen fertilizer for paddy, wheat & sugarcane.', badge:'Best Value' },
+    { id:8,  brand:'tata',       name:'Tata Rallis DAP 18:46:0',     emoji:'🟣', bg:'bg-purple', price:1380, unit:'10 kg',  desc:'Di-ammonium phosphate for strong root establishment in all crops.', badge:null },
+    { id:9,  brand:'tata',       name:'Tata NPK 10:26:26',           emoji:'🌟', bg:'bg-pink',   price:1650, unit:'10 kg',  desc:'Balanced complex fertilizer for flowering & fruiting stage support.', badge:null },
+    // Bayer
+    { id:10, brand:'bayer',      name:'Bayer MAP 12:61:0',           emoji:'🧪', bg:'bg-red',    price:1100, unit:'1 kg',   desc:'Mono ammonium phosphate for drip irrigation & strong root growth.', badge:'New' },
+    { id:11, brand:'bayer',      name:'Bayer Nutriboon Micro Mix',   emoji:'🔴', bg:'bg-red',    price:560,  unit:'500 g',  desc:'Chelated multi-micronutrient for banana, vegetable & flower crops.', badge:null },
+    { id:12, brand:'bayer',      name:'Bayer Movento Energy',        emoji:'⭕', bg:'bg-orange', price:890,  unit:'250 ml', desc:'Systemic insecticide + micronutrient for sucking pest management.', badge:'Pro' },
   ];
 
+  const brandNames = { scientific:'Scientific Industries', tropical:'Tropical Agro', tata:'Tata Rallis', bayer:'Bayer CropScience' };
+  const brandTagClass = { scientific:'bt-sci', tropical:'bt-trop', tata:'bt-tata', bayer:'bt-bay' };
+  const brandEmoji = { scientific:'🔬', tropical:'🌴', tata:'⚙️', bayer:'🧪' };
   let cartCount = 0;
 
-  function renderProducts(filter = 'all') {
-    const grid = document.getElementById('productsGrid');
-    const list = filter === 'all' ? products : products.filter(p => p.category === filter);
-    grid.innerHTML = list.map(p => `
-      <div class="product-card" data-cat="${p.category}">
+  function renderProducts(filter) {
+    const list = (!filter || filter==='all') ? products : products.filter(p=>p.brand===filter);
+    document.getElementById('productsGrid').innerHTML = list.map(p=>`
+      <div class="product-card">
         <div class="product-img ${p.bg}">
           ${p.badge ? `<div class="card-badge">${p.badge}</div>` : ''}
-          <span>${p.emoji}</span>
+          <span class="emoji">${p.emoji}</span>
+          <span class="brand-tag ${brandTagClass[p.brand]}">${brandEmoji[p.brand]} ${brandNames[p.brand]}</span>
         </div>
         <div class="product-body">
-          <div class="product-category">${p.category}</div>
+          <div class="product-brand-name">${brandNames[p.brand]}</div>
           <div class="product-name">${p.name}</div>
           <div class="product-desc">${p.desc}</div>
           <div class="product-footer">
-            <div class="product-price">$${p.price.toFixed(2)} <span>/ ${p.unit}</span></div>
-            <button class="add-btn" onclick="addToCart('${p.name}')">Add +</button>
+            <div class="product-price">₹${p.price.toLocaleString('en-IN')} <span>/ ${p.unit}</span></div>
+            <button class="add-btn" onclick="addToCart(${JSON.stringify(p.name)})">Add +</button>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`).join('');
   }
 
   function filterProducts(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     renderProducts(cat);
   }
@@ -709,53 +401,40 @@
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
+    setTimeout(()=>t.classList.remove('show'), 2500);
   }
 
-  function showCart() {
-    showToast(`🛒 ${cartCount} item${cartCount !== 1 ? 's' : ''} in your cart`);
-  }
+  function showCart() { showToast(`🛒 ${cartCount} item${cartCount!==1?'s':''} in your cart`); }
 
   function subscribe() {
-    const email = document.getElementById('emailInput').value;
-    if (!email || !email.includes('@')) { showToast('⚠️ Enter a valid email'); return; }
-    showToast(`🎉 Welcome! Check ${email}`);
-    document.getElementById('emailInput').value = '';
+    const e = document.getElementById('emailInput').value;
+    if (!e||!e.includes('@')) { showToast('⚠️ Enter a valid email'); return; }
+    showToast(`🎉 Subscribed! Check ${e}`);
+    document.getElementById('emailInput').value='';
   }
 
-  /* ── REVIEWS ── */
   const reviews = [
-    { name:"Ravi Sharma", role:"Wheat Farmer, Punjab", stars:5, text:"My wheat yield jumped 40% in just one season using PowerGrow NPK. The support team helped me calculate the exact dosage.", avatar:"👨‍🌾", accent:"#4caf50" },
-    { name:"Maria Santos", role:"Coffee Grower, Brazil", stars:5, text:"BioBoost transformed my soil health. The microbe activity is incredible and my cherries are the best I've ever produced.", avatar:"👩‍🌾", accent:"#f9e03b" },
-    { name:"James Okafor", role:"Vegetable Farm, Nigeria", stars:5, text:"Fast delivery and amazing products. The liquid kelp spray made a visible difference in just two weeks. Highly recommend!", avatar:"🧑‍🌾", accent:"#ff8c42" },
+    { name:'Murugesan K.',    role:'Paddy Farmer, Karur',       stars:5, text:'Tata Urea and Scientific NPK combination gave me the best paddy yield this season. Always genuine stock at fair price.', avatar:'👨‍🌾', accent:'#4caf50' },
+    { name:'Selvi Ramasamy', role:'Banana Grower, Erode',       stars:5, text:'Tropical Zinc Sulphate fixed my banana yellowing problem in 10 days. The team gave excellent Tamil-language advice!', avatar:'👩‍🌾', accent:'#f9e03b' },
+    { name:'Arjun Sundaram', role:'Vegetable Farmer, Pollachi', stars:5, text:'Bayer Nutriboon improved my tomato quality dramatically. Fast delivery and bulk discounts — my go-to agri store.', avatar:'🧑‍🌾', accent:'#ff8c42' },
   ];
 
-  document.getElementById('reviewsGrid').innerHTML = reviews.map(r => `
+  document.getElementById('reviewsGrid').innerHTML = reviews.map(r=>`
     <div class="review-card reveal" style="--accent:${r.accent}">
       <div class="stars">${'⭐'.repeat(r.stars)}</div>
       <p class="review-text">"${r.text}"</p>
       <div class="reviewer">
         <div class="reviewer-avatar">${r.avatar}</div>
-        <div>
-          <div class="reviewer-name">${r.name}</div>
-          <div class="reviewer-role">${r.role}</div>
-        </div>
+        <div><div class="reviewer-name">${r.name}</div><div class="reviewer-role">${r.role}</div></div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 
-  /* ── SCROLL REVEAL ── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.12});
 
-  function attachReveal() {
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  }
-
-  /* ── INIT ── */
-  renderProducts();
-  attachReveal();
+  renderProducts('all');
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
