@@ -1,1 +1,1 @@
-© Copyright Reserved 2026
+© Copyright Reserved 202
